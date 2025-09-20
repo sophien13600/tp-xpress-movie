@@ -23,5 +23,5 @@
     "yup": "^1.7.0",
     "yup-locales": "^1.2.28"
   },
-  "type": "module",
+  "type": "module"
 }
