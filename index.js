@@ -1,8 +1,9 @@
 import express from "express";
 import "dotenv/config";
-import authRoutes from "./routes/auth.route.js";
 import session from "express-session";
 import path from "path";
+import authRoutes from "./routes/auth.route.js";
+import adminRoutes from "./routes/admin.route.js";
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.set("views", import.meta.dirname + "/templates");
 
 // configuration des routes
 app.use("/", authRoutes);
+app.use("/", adminRoutes);
 
 app.get(["/"], (req, res) => {
     return res.render("index");
