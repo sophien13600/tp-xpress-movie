@@ -59,4 +59,29 @@ const remove = async (id) => {
   }
 };
 
-export default { findAll, createFilm, remove, findById };
+const update = async (id, filmData) => {
+  const UPDATE = `
+    UPDATE films 
+    SET titre = ?, image = ?, description = ?, dateSortie = ?, genre = ? 
+    WHERE id = ?
+  `;
+
+  try {
+    await connection.query(UPDATE, [
+      filmData.titre,
+      filmData.image,
+      filmData.description,
+      filmData.dateSortie,
+      filmData.genre,
+      id,
+    ]);
+
+    // Récupérer le film mis à jour
+    return await findById(id);
+  } catch (error) {
+    console.error("Erreur lors de la mise à jour du film :", error);
+    return null;
+  }
+};  
+
+export default { findAll, createFilm, remove, findById, update };

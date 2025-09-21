@@ -26,16 +26,16 @@
                                     <label for="genre" class="form-label">Genre *</label>
                                     <select class="form-control" id="genre" name="genre" required>
                                         <option value="">Sélectionnez un genre</option>
-                                        <option value="Action">Action</option>
-                                        <option value="Comédie">Comédie</option>
-                                        <option value="Drame">Drame</option>
-                                        <option value="Horreur">Horreur</option>
-                                        <option value="Science-Fiction">Science-Fiction</option>
-                                        <option value="Thriller">Thriller</option>
-                                        <option value="Romance">Romance</option>
-                                        <option value="Fantasy">Fantasy</option>
-                                        <option value="Animation">Animation</option>
-                                        <option value="Documentaire">Documentaire</option>
+                                        <option value="Action" <%= film.genre === 'Action' ? 'selected' : '' %>>Action</option>
+                                        <option value="Comédie" <%= film.genre === 'Comédie' ? 'selected' : '' %>>Comédie</option>
+                                        <option value="Drame" <%= film.genre === 'Drame' ? 'selected' : '' %>>Drame</option>
+                                        <option value="Horreur" <%= film.genre === 'Horreur' ? 'selected' : '' %>>Horreur</option>
+                                        <option value="Science-Fiction" <%= film.genre === 'Science-Fiction' ? 'selected' : '' %>>Science-Fiction</option>
+                                        <option value="Thriller" <%= film.genre === 'Thriller' ? 'selected' : '' %>>Thriller</option>
+                                        <option value="Romance" <%= film.genre === 'Romance' ? 'selected' : '' %>>Romance</option>
+                                        <option value="Fantasy" <%= film.genre === 'Fantasy' ? 'selected' : '' %>>Fantasy</option>
+                                        <option value="Animation" <%= film.genre === 'Animation' ? 'selected' : '' %>>Animation</option>
+                                        <option value="Documentaire" <%= film.genre === 'Documentaire' ? 'selected' : '' %>>Documentaire</option>
                                     </select>
                                 </div>
                             </div>

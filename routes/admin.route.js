@@ -10,5 +10,6 @@ router.get("/admin/add-film", FilmsController.showAddFilmForm);
 router.post("/admin/add-film", FilmsController.addFilm);
 router.post("/admin/delete-film/:id", FilmsController.deleteFilm);
 router.get("/admin/edit-film/:id", FilmsController.showEditFilmForm);
+router.post("/admin/edit-film/:id", FilmsController.updateFilm);
 
 export default router;

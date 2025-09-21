@@ -92,6 +92,39 @@ const showEditFilmForm = async (req, res, next) => {
     return res.redirect("/admin/films");
   }
 };
+const updateFilm = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const { titre, description, image, dateSortie, genre } = req.body;
+
+    // Validation des données
+    if (!titre || !description || !image || !dateSortie || !genre) {
+      req.session.error = "Tous les champs sont obligatoires";
+      return res.redirect(`/admin/edit-film/${id}`);
+    }
+
+    // Mise à jour du film
+    const updatedFilm = await FilmsRepository.update(id, {
+      titre,
+      image,
+      description,
+      dateSortie,
+      genre,
+    });
+
+    if (updatedFilm) {
+      req.session.success = "Film mis à jour avec succès";
+      return res.redirect("/");
+    } else {
+      req.session.error = "Erreur lors de la mise à jour du film";
+      return res.redirect(`/admin/edit-film/${id}`);
+    }
+  } catch (e) {
+    console.error("Erreur lors de la mise à jour du film :", e);
+    req.session.error = "Erreur lors de la mise à jour du film";
+    return res.redirect(`/admin/edit-film/${req.params.id}`);
+  }
+};
 
 export default {
   showAdminFilms,
@@ -99,4 +132,5 @@ export default {
   addFilm,
   deleteFilm,
   showEditFilmForm,
+  updateFilm,
 };
