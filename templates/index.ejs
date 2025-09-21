@@ -1,2 +1,5 @@
 <%- include('./partials/nav.ejs') %>
+<% if (user && user.role === 'admin') { %>
+<%- include('./partials/admin-dashboard.ejs') %>
+<% }%>
 <%- include('./partials/footer.ejs') %>

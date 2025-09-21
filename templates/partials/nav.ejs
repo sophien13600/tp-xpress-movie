@@ -62,13 +62,6 @@
                 <%= user.prenom %> <%= user.nom %>
               </a>
             </li>
-            <li class="nav-item">
-              <form method="get" action="/logout" class="d-inline">
-                <button class="btn btn-outline-danger" type="submit">
-                  Déconnexion
-                </button>
-              </form>
-            </li>
             <% } else if (user && user.role === 'admin') { %>
             <li class="nav-item">
               <a class="nav-link" href="/compte">
@@ -78,7 +71,7 @@
             <li class="nav-item">
               <form method="get" action="/logout" class="d-inline">
                 <button class="btn btn-outline-danger" type="submit">
-                  Déconnexion
+                <i class="fas fa-sign-out-alt me-1"></i>  Déconnexion
                 </button>
               </form>
             </li>
