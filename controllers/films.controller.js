@@ -19,6 +19,34 @@ const showAddFilmForm = async (req, res, next) => {
   return res.render("add-films");
 };
 
+const addFilm = async (req, res, next) => {
+  try {
+    const { titre, description, image, dateSortie, genre } = req.body;
 
 
-export default { showAdminFilms, showAddFilmForm };
+    // Création du film
+    const newFilm = await FilmsRepository.createFilm({
+      titre,
+      image,
+      description,
+      dateSortie,
+      genre,
+    });
+
+    if (newFilm) {
+      req.session.success = "Film créé avec succès";
+      return res.redirect("/");
+    } else {
+      req.session.error = "Erreur lors de la création du film";
+      return res.redirect("/admin/add-film");
+    }
+  } catch (e) {
+    console.error("Erreur lors de l'ajout du film :", e);
+    req.session.error = "Erreur lors de la création du film";
+    return res.redirect("/admin/add-film");
+  }
+};
+
+
+
+export default { showAdminFilms, showAddFilmForm, addFilm };

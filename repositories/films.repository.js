@@ -13,5 +13,29 @@ const findAll = async () => {
       return [];
     }
   };
+
+  const createFilm = async (film) => {
+    const INSERT = `
+    INSERT INTO films (titre, image, description, dateSortie, genre) 
+    VALUES (?, ?, ?, ?, ?)
+  `;
+
+  try {
+    const resultat = await connection.query(INSERT, [
+      film.titre,
+      film.image,
+      film.description,
+      film.dateSortie,
+      film.genre,
+    ]);
+    film.id = resultat[0].insertId
+    return film;
+    
+  } catch (error) {
+    console.error("Erreur lors de la création du film :", error);
+    return null;
+  }
+};
+
   
-export default { findAll };
+export default { findAll, createFilm };
