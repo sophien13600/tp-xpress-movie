@@ -23,7 +23,6 @@ const addFilm = async (req, res, next) => {
   try {
     const { titre, description, image, dateSortie, genre } = req.body;
 
-
     // Création du film
     const newFilm = await FilmsRepository.createFilm({
       titre,
@@ -49,7 +48,7 @@ const addFilm = async (req, res, next) => {
 
 const deleteFilm = async (req, res, next) => {
   try {
-    const id  = req.params.id;
+    const id = req.params.id;
 
     // Suppression du film
     const success = await FilmsRepository.remove(id);
@@ -68,6 +67,36 @@ const deleteFilm = async (req, res, next) => {
   }
 };
 
+const showEditFilmForm = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const film = await FilmsRepository.findById(id);
 
+    if (!film) {
+      req.session.error = "Film non trouvé";
+      return res.redirect("/");
+    }
 
-export default { showAdminFilms, showAddFilmForm, addFilm, deleteFilm };
+    res.render("edit-film", {
+      film,
+      error: req.session.error,
+      success: req.session.success,
+    });
+
+    // Nettoyer les messages flash
+    delete req.session.error;
+    delete req.session.success;
+  } catch (e) {
+    console.error("Erreur lors de la récupération du film :", e);
+    req.session.error = "Erreur lors du chargement du film";
+    return res.redirect("/admin/films");
+  }
+};
+
+export default {
+  showAdminFilms,
+  showAddFilmForm,
+  addFilm,
+  deleteFilm,
+  showEditFilmForm,
+};

@@ -35,6 +35,18 @@ const createFilm = async (film) => {
   }
 };
 
+const findById = async (id) => {
+  const SELECT = "SELECT * FROM films WHERE id = ?";
+
+  try {
+    const resultat = await connection.query(SELECT, [id]);
+    return resultat[0][0] || null;
+  } catch (error) {
+    console.error("Erreur lors de la récupération du film :", error);
+    return null;
+  }
+};
+
 const remove = async (id) => {
   const DELETE = "DELETE FROM films WHERE id = ?";
 
@@ -47,4 +59,4 @@ const remove = async (id) => {
   }
 };
 
-export default { findAll, createFilm, remove };
+export default { findAll, createFilm, remove, findById };
