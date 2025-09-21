@@ -15,4 +15,10 @@ const showAdminFilms = async (req, res, next) => {
   }
 };
 
-export default { showAdminFilms };
+const showAddFilmForm = async (req, res, next) => {
+  return res.render("add-films");
+};
+
+
+
+export default { showAdminFilms, showAddFilmForm };
