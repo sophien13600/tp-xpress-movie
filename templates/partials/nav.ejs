@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Xpress Movie</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Xpress Movie</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarScroll"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
+        <div
+          class="col-12 col-lg-4 d-flex justify-content-lg-end justify-content-start"
+        >
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <% if (user && user.role === 'abonne') { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/films/favoris"> Favoris </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/compte">
+                <%= user.prenom %> <%= user.nom %>
+              </a>
+            </li>
+            <li class="nav-item">
+              <form method="get" action="/logout" class="d-inline">
+                <button class="btn btn-outline-danger" type="submit">
+                  Déconnexion
+                </button>
+              </form>
+            </li>
+            <% } else if (user && user.role === 'admin') { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/compte">
+                <%= user.prenom %> <%= user.nom %> (Admin)
+              </a>
+            </li>
+            <li class="nav-item">
+              <form method="get" action="/logout" class="d-inline">
+                <button class="btn btn-outline-danger" type="submit">
+                  Déconnexion
+                </button>
+              </form>
+            </li>
+            <% } else { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/inscription">S'inscrire</a>
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-primary" href="/connexion">Connexion</a>
+            </li>
+            <% } %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </body>
+</html>

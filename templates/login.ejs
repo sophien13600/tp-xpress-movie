@@ -1,0 +1,23 @@
+<%- include('./partials/nav.ejs') %>
+<div class="form-container">
+    <form action="/connexion" method="post" class="auth-form">
+      <h2>Connexion</h2>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" name="email" id="email" />
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Mot de passe</label>
+        <input
+          type="password"
+          class="form-control"
+          name="password"
+          id="password"
+        />
+      </div>
+      <button type="submit" class="btn btn-primary btn-modern">
+        Se connecter
+      </button>
+    </form>
+  </div>  
+<%- include('./partials/footer.ejs') %>
