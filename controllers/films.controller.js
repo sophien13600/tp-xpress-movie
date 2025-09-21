@@ -47,6 +47,27 @@ const addFilm = async (req, res, next) => {
   }
 };
 
+const deleteFilm = async (req, res, next) => {
+  try {
+    const id  = req.params.id;
+
+    // Suppression du film
+    const success = await FilmsRepository.remove(id);
+
+    if (success) {
+      req.session.success = "Film supprimé avec succès";
+    } else {
+      req.session.error = "Erreur lors de la suppression du film";
+    }
+
+    return res.redirect("/");
+  } catch (e) {
+    console.error("Erreur lors de la suppression du film :", e);
+    req.session.error = "Erreur lors de la suppression du film";
+    return res.redirect("/");
+  }
+};
 
 
-export default { showAdminFilms, showAddFilmForm, addFilm };
+
+export default { showAdminFilms, showAddFilmForm, addFilm, deleteFilm };

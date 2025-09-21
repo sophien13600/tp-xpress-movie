@@ -9,6 +9,7 @@ router.get("/", FilmsController.showAdminFilms, (req, res) => {
 
   router.get("/admin/add-film", FilmsController.showAddFilmForm);
   router.post("/admin/add-film", FilmsController.addFilm);
+  router.post("/admin/delete-film/:id", FilmsController.deleteFilm);
 
 
 export default router;

@@ -9,7 +9,9 @@
             class="d-flex flex-row justify-content-between align-items-center mb-4"
           >
             <h1 class="h2">Gestion des Films</h1>
-            <a href="/admin/add-film" class="btn btn-primary"> Ajouter un Film </a>
+            <a href="/admin/add-film" class="btn btn-primary">
+              Ajouter un Film
+            </a>
           </div>
         </div>
         <div class="card">
@@ -57,13 +59,19 @@
                         >
                           modifier
                         </a>
-                        <button
-                          type="button"
-                          class="btn btn-sm btn-outline-danger"
-                          title="Supprimer"
+                        <form
+                          method="POST"
+                          action="/admin/delete-film/<%= film.id %>"
                         >
-                          supprimer
-                        </button>
+                          <button
+                            type="submit"
+                            class="btn btn-sm btn-outline-danger"
+                            title="Supprimer"
+                            onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce film ?')"
+                          >
+                            supprimer
+                          </button>
+                        </form>
                       </div>
                     </td>
                   </tr>
