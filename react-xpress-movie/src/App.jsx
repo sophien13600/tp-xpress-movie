@@ -1,16 +1,13 @@
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
-import Routes from '../src/router/Routes'
-//import Nav from './components/Nav'
-
-//import Home from './views/Home'
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import Routes from "../src/router/Routes";
+import { Provider } from "./contexts/GlobalContext";
 
 function App() {
-
   return (
     <>
-     <Routes />
+      <Routes />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
