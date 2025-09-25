@@ -1,0 +1,57 @@
+export default function RegisterForm() {
+  return (
+    <div class="form-container">
+      <form class="auth-form" action="/inscription" method="post">
+        <h2>Inscription</h2>
+        <div class="mb-3">
+          <label for="email" class="form-label">
+            Email
+          </label>
+          <input type="email" class="form-control" name="email" id="email" />
+        </div>
+        <div class="mb-3">
+          <label for="nom" class="form-label">
+            Nom
+          </label>
+          <input type="text" class="form-control" name="nom" id="nom" />
+        </div>
+        <div class="mb-3">
+          <label for="prenom" class="form-label">
+            Prenom
+          </label>
+          <input type="text" class="form-control" name="prenom" id="prenom" />
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">
+            Mot de passe
+          </label>
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            id="password"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">
+            Confirmer votre mot de passe
+          </label>
+          <input
+            type="password"
+            class="form-control"
+            name="confirmPassword"
+            id="confirmPassword"
+          />
+        </div>
+        <button
+          type="submit"
+          name="role"
+          value="abonne"
+          class="btn btn-primary btn-modern"
+        >
+          S'inscrire
+        </button>
+      </form>
+    </div>
+  );
+}

@@ -4,8 +4,15 @@ import session from "express-session";
 import path from "path";
 import authRoutes from "./routes/auth.route.js";
 import adminRoutes from "./routes/admin.route.js";
+//import auth from 'basic-auth'
+import token from 'token'
 
 const app = express();
+app.use(token({
+    origin: '*',
+    methods: ['GET', 'POST', 'DELETE', 'PUT'],
+    allowedHeaders: ['Content-Type', 'Accept', 'Authorization']
+}))
 
 // Permet de récupérer les données POST dans req.body
 app.use(express.urlencoded());
