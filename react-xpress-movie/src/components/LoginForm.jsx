@@ -1,17 +1,20 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../contexts/GlobalContext";
 import api from "../../axios.config.js";
+//import { response } from "express";
 
 export default function LoginForm() {
- // const { setIsAuthenticated } = useContext(GlobalContext);
+  const { setIsAuthenticated,} = useContext(GlobalContext);
+  const {setUser} = useContext(GlobalContext);
   const email = useRef();
   const password = useRef();
   const navigate = useNavigate();
-  //const [error,setError] =useState('')
+ //const [error,setError] =useState('')
 
   async function connexion(event) {
     event.preventDefault();
+    
     try {
       const response = await api.post(
         "/api/auth/signin",
@@ -24,11 +27,23 @@ export default function LoginForm() {
             "Content-Type": "application/json",
           },
         },
+        
       );
+      console.log('Réponse:', response.data.nom);
+      if(response){
+        localStorage.setItem('email', response.data.email)
+        setUser(response.data.nom,response.data.role)
+        setIsAuthenticated(true)
+        
+        //setUser(data)
+        navigate('/')
+        console.log('ok');
+        
+      }
     } catch (error) {
       console.error("Erreur de connexion:", error);
+    }
   }
-}
   return (
     <div className="form-container">
       <form onSubmit={connexion} className="auth-form">

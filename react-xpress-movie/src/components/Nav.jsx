@@ -1,9 +1,10 @@
 import { NavLink } from "react-router-dom";
-// import { useContext } from "react";
-// import { GlobalContext } from "../contexts/GlobalContext";
+import { useContext } from "react";
+import { GlobalContext } from "../contexts/GlobalContext";
 // import api from "../../axios.config.js";
 
 export default function Nav() {
+  const { user } = useContext(GlobalContext)
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -41,9 +42,12 @@ export default function Nav() {
                 </NavLink>
               </li>
               <li className="nav-item">
+                {
+                  user &&
                 <NavLink className="nav-link" to="/compte">
-                  {/* <%= user.prenom %> <%= user.nom %> */}
+                    {user}  
                 </NavLink>
+                }
               </li>
               {/* <% } else if (user && user.role === 'admin') { %> */}
               <li className="nav-item">

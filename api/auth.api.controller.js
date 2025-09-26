@@ -9,7 +9,7 @@ const login = async (req, res, next) => {
   );
 
   console.log("Données de connexion reçues :", req.body);
-  console.log("user", user);
+  //console.log("user", user);
   
   if (user) {
     // Si l'utilisateur est trouvé et le mot de passe correct
@@ -23,9 +23,10 @@ const login = async (req, res, next) => {
       email: user.email,
       role: user.role,
     };
-
+      res.send(req.session.user)
   } else {
     // Si les identifiants sont incorrects
+    //res.status(401).json({ success: false, message: 'Email ou mot de passe invalide' });
     res.send("Identifiants incorrects - Connexion échouée");
   }
 };
