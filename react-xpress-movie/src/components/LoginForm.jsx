@@ -4,18 +4,17 @@ import { GlobalContext } from "../contexts/GlobalContext";
 import api from "../../axios.config.js";
 
 export default function LoginForm() {
-  const { setIsAuthenticated, setUser } = useContext(GlobalContext);
+ // const { setIsAuthenticated } = useContext(GlobalContext);
   const email = useRef();
   const password = useRef();
   const navigate = useNavigate();
+  //const [error,setError] =useState('')
 
   async function connexion(event) {
     event.preventDefault();
- 
-
     try {
       const response = await api.post(
-        "/connexion",
+        "/api/auth/signin",
         {
           email: email.current.value,
           password: password.current.value,
@@ -24,25 +23,22 @@ export default function LoginForm() {
           headers: {
             "Content-Type": "application/json",
           },
-        }
+        },
       );
-
-  
-
-    
     } catch (error) {
       console.error("Erreur de connexion:", error);
   }
+}
   return (
     <div className="form-container">
       <form onSubmit={connexion} className="auth-form">
         <h2>Connexion</h2>
 
-        {error && (
+        {/* {error && (
           <div className="alert alert-danger" role="alert">
             {error}
           </div>
-        )}
+        )} */}
 
         <div className="mb-3">
           <label htmlFor="email" className="form-label">
@@ -71,12 +67,11 @@ export default function LoginForm() {
           />
         </div>
         <button
-          type="submit"
           className="btn btn-primary btn-modern"
         >
+          Connexion
         </button>
       </form>
     </div>
   );
-}
 }

@@ -4,19 +4,22 @@ import session from "express-session";
 import path from "path";
 import authRoutes from "./routes/auth.route.js";
 import adminRoutes from "./routes/admin.route.js";
+import authApi from "./api/routes/auth.api.routes.js"
 //import auth from 'basic-auth'
 import cors from "cors";
 
 const app = express();
 app.use(
   cors({
-    origin: ["http://localhost:5173"],
+    origin: ["http://localhost:5174"],
+          // ["http://localhost:5174"]
   })
 );
 
 // Permet de récupérer les données POST dans req.body
 app.use(express.urlencoded());
 app.use(express.json());
+//app.use(bodyParser.json())
 //Création de la session
 app.use(
   session({
@@ -40,6 +43,7 @@ app.set("views", import.meta.dirname + "/templates");
 // configuration des routes
 app.use("/", authRoutes);
 app.use("/", adminRoutes);
+app.use("/", authApi)
 
 app.get(["/"], (req, res) => {
   return res.render("index");

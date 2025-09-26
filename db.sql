@@ -64,3 +64,6 @@ INSERT INTO films (titre, image, description, dateSortie, genre) VALUES
   ("Matrix", "/images/matrix.jpg", "La matrice et Neo", "1999-03-31", "Action");
   INSERT INTO users (nom, prenom, email, password, role)
 VALUES ("Admin", "Root", "admin@xpress.com", "$2a$10$ubYt1te5eu5IDGHJYmeieOjSXfMUav0vsHlKj1nN5ogCdnKebcyPy", "admin");
+
+
+SELECT * FROM users WHERE email='admin@xpress.com';

@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
-import { useContext } from "react";
-import { GlobalContext } from "../contexts/GlobalContext";
-import api from "../../axios.config.js";
+// import { useContext } from "react";
+// import { GlobalContext } from "../contexts/GlobalContext";
+// import api from "../../axios.config.js";
 
 export default function Nav() {
   return (
@@ -36,8 +36,8 @@ export default function Nav() {
               {/* <% if (user && user.role === 'abonne') { %> */}
               <li className="nav-item">
                 <NavLink className="nav-link" to="/films/favoris">
-                  {" "}
-                  Favoris{" "}
+                
+                  Favoris
                 </NavLink>
               </li>
               <li className="nav-item">
