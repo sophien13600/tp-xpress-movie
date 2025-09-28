@@ -1,15 +1,18 @@
-import { createContext, useState, useEffect } from "react";
-
-export const GlobalContext = createContext();
+import { useMemo, useState } from "react";
+import { GlobalContext } from "./globalContext";
 
 export const Provider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(
-    false || localStorage.getItem("email")
+    Boolean(localStorage.getItem("email"))
+  );
+  const [user, setUser] = useState(null);
+
+  const value = useMemo(
+    () => ({ isAuthenticated, setIsAuthenticated, user, setUser }),
+    [isAuthenticated, user]
   );
 
   return (
-    <GlobalContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
-      {children}
-    </GlobalContext.Provider>
+    <GlobalContext.Provider value={value}>{children}</GlobalContext.Provider>
   );
 };

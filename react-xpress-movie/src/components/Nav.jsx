@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
-import { GlobalContext } from "../contexts/GlobalContext";
+import { GlobalContext } from "../contexts/globalContext";
 import api from "../../axios.config.js";
 
 export default function Nav() {

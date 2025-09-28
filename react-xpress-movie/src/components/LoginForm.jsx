@@ -1,6 +1,6 @@
 import { useContext, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { GlobalContext } from "../contexts/GlobalContext";
+import { GlobalContext } from "../contexts/globalContext";
 import api from "../../axios.config.js";
 
 export default function LoginForm() {
