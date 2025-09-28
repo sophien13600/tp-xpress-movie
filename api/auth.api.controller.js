@@ -1,30 +1,16 @@
 import AuthRepository from "../repositories/auth.repository.js";
 
-const addUser = async (req, res, next) => {
-  // Vérification que des données ont été envoyées
-  if (req.body) {
-    // Tentative d'enregistrement de l'utilisateur via le repository
-    const user = await AuthRepository.register(req.body);
-
-    if (user) {
-      // Si l'enregistrement réussit, redirection vers la page de connexion
-      res.redirect("/connexion");
-    } else {
-      // Si l'enregistrement échoue, retour à la page d'inscription
-      res.redirect("/inscription");
-    }
-  }
-};
-
 const login = async (req, res, next) => {
   // Vérification des identifiants via le repository
   const user = await AuthRepository.checkUser(
+    //console.log(req.body),
     req.body.email,
     req.body.password
   );
 
-  // console.log("Données de connexion reçues :", req.body);
-
+  console.log("Données de connexion reçues :", req.body);
+  //console.log("user", user);
+  
   if (user) {
     // Si l'utilisateur est trouvé et le mot de passe correct
     console.log("Session après connexion :", req.session);
@@ -37,11 +23,10 @@ const login = async (req, res, next) => {
       email: user.email,
       role: user.role,
     };
-
-    // Redirection vers la page d'accueil après connexion réussie
-    res.redirect("/");
+      res.send(req.session.user)
   } else {
     // Si les identifiants sont incorrects
+    //res.status(401).json({ success: false, message: 'Email ou mot de passe invalide' });
     res.send("Identifiants incorrects - Connexion échouée");
   }
 };
@@ -53,7 +38,7 @@ const logout = (req, res) => {
   });
 };
 export default {
-  addUser,
+
   login,
   logout,
 };

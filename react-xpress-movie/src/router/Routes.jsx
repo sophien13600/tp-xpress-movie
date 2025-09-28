@@ -15,7 +15,6 @@ const AppRoutes = () => {
       <Route path="/connexion" element={<Login />} />
       <Route path="/inscription" element={<Register />} />
       <Route element={<PrivateRoute isAuthenticated={isAuthenticated} />}>
-        {/* Routes protégées peuvent être ajoutées ici */}
       </Route>
     </Routes>
   );
